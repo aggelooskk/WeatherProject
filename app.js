@@ -6,16 +6,18 @@ require('dotenv').config();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Home page
 app.get("/" , function(req , res){
   res.sendFile(__dirname + "/index.html")
 });
 
-
+// Post request
 app.post("/" , function(req , res){
   const query = req.body.cityName
   const apikey = process.env.API_KEY;
   const url = "https://api.weatherapi.com/v1/current.json?key=" + apikey + "&q=" + query + "&aqi=no"
 
+  // Response data
 https.get(url , function(response){
   console.log(response.statusCode);
 
