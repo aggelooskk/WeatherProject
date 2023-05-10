@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const https = require("https");
 const bodyParser = require("body-parser");
+require('dotenv').config();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -12,7 +13,7 @@ app.get("/" , function(req , res){
 
 app.post("/" , function(req , res){
   const query = req.body.cityName
-  const apikey = "2625204490fa42148c2102213221712"
+  const apikey = process.env.API_KEY;
   const url = "https://api.weatherapi.com/v1/current.json?key=" + apikey + "&q=" + query + "&aqi=no"
 
 https.get(url , function(response){
